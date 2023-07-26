@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTremmel | Developer</title>
+    <link rel="stylesheet" href="styles.css">
+     <link rel="icon" href="file:///Users/dylantremmel/Downloads/icons8-linux-server-80.png" type="image/x-icon">
+</head>
+
+<body>
+	
+    <div class="terminal">
+        <pre>
+        	<center><h1>Tremmel OS</h1></center>
+            <span id="prompt">user@site:~$</span> <input type="text" id="input" placeholder="Type 'man'" autofocus>
+        </pre>
+        <pre id="output"></pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<style>
+
+	input {
+		background-color: transparent;
+		border: 1px solid green;
+		color: lightgreen;
+		font-family: 'Courier New', monospace;
+		font-weight: bold;
+	}
+	
+	body {
+    font-family: 'Courier New', monospace;
+    background-color: #0f0f0f;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+ }
+
+.terminal {
+    background-color: #000;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#prompt {
+    color: #00ff00;
+}
+
+#output {
+    color: #00ff00;
+    white-space: pre-wrap;
+}
+
+</style>
+
+<script>
+
+	function goToResume() {
+  		window.location = 'http://google.com'
+	}
+
+	function downloadPNGFile() {
+    	const fileURL = 'path/to/your/file.png';
+
+   	    const anchor = document.createElement('a');
+
+    	anchor.href = fileURL;
+
+    	anchor.download = 'filename.png';
+
+    	anchor.click();
+	}
+
+	document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const prompt = document.getElementById("prompt").innerText;
+
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const command = input.value.trim().toLowerCase();
+
+         
+            input.value = "";
+
+            
+            processCommand(command);
+        }
+    });
+
+    function processCommand(command) {
+        switch (command) {
+        	case "man":
+                output.innerText += "Help menu\nTo access the 'about me' section: sudo cat about_me\nTo access my contact information: sudo cat contact_info\nTo download my resume: sudo curl my_resume.pdf\nTo view my resume in your browser: xdc-open my_resume.pdf\nTo clear the terminal: clear\nTo see my projects: sudo ls -projects\n\n";
+                break;
+            case "sudo cat about_me":
+                output.innerText += "Welcome to my website! I'm Chloe Tremmel, a seasoned web developer driven by an unyielding passion for cybersecurity. With a rich history of over 5 years developing websites, I have been crafting captivating sites using HTML, CSS, and Javascript, continuously pushing the boundaries of creativity.\nOver the past year, I've undertaken three significant projects, two of which involved seamlessly integrating PHP and SQL – languages I’m fluent in. My commitment to excellence extends beyond coding; I possess a mastery of the command line on both Unix/Linux and Windows systems, allowing me to fortify, optimize, and maintain websites with precision and efficiency.\nAs a proficient user of Git and Github/Gitlab, I understand the importance of collaboration and version control in successful project management. My skills have been tested and proven through a recent university-assigned group project, where seamless teamwork led to exceptional results.\nBut my journey doesn't stop there. My insatiable thirst for knowledge led me to explore the realms of ethical hacking through independent study and university courses. Engaging in hands-on practices like code injections, buffer overflow attacks, denial of service, brute force, and traversal, I have gained a profound understanding of application development and vulnerability mitigation.\nUser data security is a cause close to my heart, and I am committed to upholding the integrity of consumer Personally Identifiable Information (PII). Through my learnings in cybersecurity, I am devoted to ensuring users can entrust their data in digital environments without hesitation.\nAt the core of my work lies an unshakeable dedication to crafting secure, user-friendly, and cutting-edge web experiences. As you navigate through my portfolio, I hope you'll witness the passion and expertise that define my journey as a web developer and cybersecurity enthusiast.\nThank you for visiting, and I look forward to connecting with you on exciting projects that push the boundaries of what's possible on the web. Let's build a secure and vibrant digital world together.\n\n";
+                break;
+            case "sudo cat contact_info":
+                output.innerText += "Contact Information:\nEmail: ctremmel22@gmail.com OR ctremmel@drew.edu\nPhone: +1 (862) 202-4858\n\n";
+                break;
+            case "sudo curl my_resume.pdf":
+                output.innerText += "Downloading resume...\n\n";
+                downloadPNGFile()
+                break;
+            case "xdc-open my_resume.pdf":
+                goToResume();
+                break;
+            case "sudo ls -projects":
+                output.innerText += "Original portfolio website: https://chloes0mt1.github.io/officialwebsite/\n\nUpnext: The Music Platform of the Future: https://chloes0mt1.github.io/upnext/index.html\n\nThe Gator Pit - Florida Cafe Menu: https://chloes0mt1.github.io/thegatorpit/\n\nPet Paradise - Pet Store Website (unfinished): https://chloes0mt1.github.io/petparadise/\n\nMath.random JS - A fun demo of the Math.random function in Javascript: https://chloes0mt1.github.io/mathrandomjs/\n\nRecall - Command-line number memory game: https://github.com/chloes0mt1/recall/blob/main/recall.py\n\nVulnerability Report/Cybersecurity Research Project: https://chloes0mt1.github.io/cybersec/vulnerabilityreportsql.pdf";
+                break;
+            case "clear":
+                location.reload();
+                break;
+            default:
+                output.innerText += `${prompt} ${command}: command not found\n\n`;
+        }
+    }
+});
+
+</script>
+
+</html>
